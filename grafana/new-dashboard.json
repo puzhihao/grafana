@@ -44,7 +44,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "df5uy6qfnfym8f"
+          "uid": "${ds}"
         },
         "fieldConfig": {
           "defaults": {
@@ -132,7 +132,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
+              "uid": "${ds}"
             },
             "editorMode": "code",
             "expr": "sum (container_memory_working_set_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name)/ sum(container_spec_memory_limit_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name) * 100",
@@ -152,7 +152,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "df5uy6qfnfym8f"
+          "uid": "${ds}"
         },
         "fieldConfig": {
           "defaults": {
@@ -240,7 +240,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
+              "uid": "${ds}"
             },
             "editorMode": "code",
             "expr": "sum (container_memory_working_set_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name)/ sum(container_spec_memory_limit_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name) * 100",
@@ -260,7 +260,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "df5uy6qfnfym8f"
+          "uid": "${ds}"
         },
         "fieldConfig": {
           "defaults": {
@@ -348,7 +348,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
+              "uid": "${ds}"
             },
             "editorMode": "code",
             "exemplar": true,
@@ -373,10 +373,23 @@
     "templating": {
       "list": [
         {
+          "current": {
+            "text": "prometheus-1",
+            "value": "bf5rlorz6562oa"
+          },
+          "label": "prometheus",
+          "name": "ds",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
           "allValue": ".*",
           "current": {
-            "text": "k8s-a",
-            "value": "k8s-a"
+            "text": "All",
+            "value": "$__all"
           },
           "definition": "label_values(container_cpu_cfs_periods_total,cluster_name)",
           "includeAll": true,
@@ -391,19 +404,6 @@
           "refresh": 2,
           "regex": "",
           "type": "query"
-        },
-        {
-          "current": {
-            "text": "prometheus",
-            "value": "df5uy6qfnfym8f"
-          },
-          "label": "prometheus",
-          "name": "ds",
-          "options": [],
-          "query": "prometheus",
-          "refresh": 1,
-          "regex": "",
-          "type": "datasource"
         }
       ]
     },
