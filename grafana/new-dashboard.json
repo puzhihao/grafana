@@ -1,5 +1,5 @@
 {
-  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "apiVersion": "dashboard.grafana.app/v0alpha1",
   "kind": "Dashboard",
   "metadata": {
     "name": "3edd2e21-36a0-4215-bd0f-a02aa2536f89"
@@ -24,7 +24,7 @@
             "type": "prometheus",
             "uid": "df5uy6qfnfym8f"
           },
-          "enable": false,
+          "enable": true,
           "hide": false,
           "iconColor": "red",
           "name": "New annotation",
@@ -74,7 +74,7 @@
               "scaleDistribution": {
                 "type": "linear"
               },
-              "showPoints": "never",
+              "showPoints": "auto",
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -84,7 +84,6 @@
                 "mode": "off"
               }
             },
-            "links": [],
             "mappings": [],
             "thresholds": {
               "mode": "absolute",
@@ -98,8 +97,7 @@
                   "value": 80
                 }
               ]
-            },
-            "unit": "percent"
+            }
           },
           "overrides": []
         },
@@ -109,22 +107,18 @@
           "x": 0,
           "y": 0
         },
-        "id": 2,
+        "id": 1,
         "options": {
           "legend": {
-            "calcs": [
-              "max",
-              "last",
-              "mean"
-            ],
-            "displayMode": "table",
+            "calcs": [],
+            "displayMode": "list",
             "placement": "bottom",
             "showLegend": true
           },
           "tooltip": {
             "hideZeros": false,
-            "mode": "multi",
-            "sort": "desc"
+            "mode": "single",
+            "sort": "none"
           }
         },
         "pluginVersion": "12.1.1",
@@ -132,130 +126,17 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
+              "uid": "df5uy6qfnfym8f"
             },
             "editorMode": "code",
-            "exemplar": true,
-            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}[2m])) by (cluster_name,container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}/100000) by (cluster_name,container)) * 100",
-            "hide": false,
+            "expr": "",
             "instant": false,
-            "interval": "",
-            "intervalFactor": 1,
-            "legendFormat": "{{ container,cluster_name}}",
-            "metric": "container_cpu",
-            "refId": "A",
-            "step": 10
-          }
-        ],
-        "title": "微服务(容器名)平均CPU使用率(最大100%)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "prometheus",
-          "uid": "df5uy6qfnfym8f"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "links": [],
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 0
-        },
-        "id": 3,
-        "options": {
-          "legend": {
-            "calcs": [
-              "max",
-              "last",
-              "mean"
-            ],
-            "displayMode": "table",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "multi",
-            "sort": "desc"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
-            },
-            "editorMode": "code",
-            "expr": "sum (container_memory_working_set_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name)/ sum(container_spec_memory_limit_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name) * 100",
-            "hide": false,
-            "interval": "",
-            "intervalFactor": 1,
-            "legendFormat": "{{ container,cluster_name }}",
-            "metric": "container_memory_usage:sort_desc",
+            "legendFormat": "__auto",
             "range": true,
-            "refId": "A",
-            "step": 10
+            "refId": "A"
           }
         ],
-        "title": "微服务(容器名)平均内存使用率",
+        "title": "New panel",
         "type": "timeseries"
       }
     ],
@@ -265,13 +146,11 @@
     "templating": {
       "list": [
         {
-          "allValue": ".*",
           "current": {
             "text": "k8s-a",
             "value": "k8s-a"
           },
           "definition": "label_values(container_cpu_cfs_periods_total,cluster_name)",
-          "includeAll": true,
           "label": "cluster",
           "name": "cluster",
           "options": [],
@@ -280,7 +159,7 @@
             "query": "label_values(container_cpu_cfs_periods_total,cluster_name)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
-          "refresh": 2,
+          "refresh": 1,
           "regex": "",
           "type": "query"
         }
