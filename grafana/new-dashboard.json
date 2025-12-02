@@ -244,26 +244,14 @@
               "uid": "bf5rlorz6562oa"
             },
             "editorMode": "code",
-            "expr": "sum (container_memory_working_set_bytes{container !=\"\",container!=\"POD\"}) by (container)/ sum(container_spec_memory_limit_bytes{container !=\"\",container!=\"POD\"}) by (container) * 100",
+            "expr": "sum (container_memory_working_set_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name)/ sum(container_spec_memory_limit_bytes{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}) by (container,cluster_name) * 100",
+            "hide": false,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "WSS：{{ container }}",
+            "legendFormat": "{{ container,cluster_name }}",
             "metric": "container_memory_usage:sort_desc",
             "range": true,
             "refId": "A",
-            "step": 10
-          },
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "bf5rlorz6562oa"
-            },
-            "expr": "sum (container_memory_rss{origin_prometheus=~\"$origin_prometheus\",container =~\"$Container\",container !=\"\",container!=\"POD\",namespace=~\"$NameSpace\"}) by (container)/ sum(container_spec_memory_limit_bytes{origin_prometheus=~\"$origin_prometheus\",container =~\"$Container\",container !=\"\",container!=\"POD\",namespace=~\"$NameSpace\"}) by (container) * 100",
-            "interval": "",
-            "intervalFactor": 1,
-            "legendFormat": "RSS：{{ container }}",
-            "metric": "container_memory_usage:sort_desc",
-            "refId": "B",
             "step": 10
           }
         ],
