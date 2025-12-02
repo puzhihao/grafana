@@ -171,6 +171,7 @@
     "templating": {
       "list": [
         {
+          "allValue": ".*",
           "current": {
             "text": "k8s-a",
             "value": "k8s-a"
