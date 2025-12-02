@@ -391,6 +391,19 @@
           "refresh": 2,
           "regex": "",
           "type": "query"
+        },
+        {
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "label": "prometheus",
+          "name": "ds",
+          "options": [],
+          "query": "",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
         }
       ]
     },
