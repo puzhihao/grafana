@@ -99,7 +99,32 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "kubelet-cadvisor-addlabel"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 8,
@@ -129,7 +154,7 @@
               "uid": "df5uy6qfnfym8f"
             },
             "editorMode": "code",
-            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\"}[2m])) by (container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\"}/100000) by (container)) * 100",
+            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=\"$cluster\"}[2m])) by (container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=\"$cluster\"}/100000) by (container)) * 100",
             "instant": false,
             "legendFormat": "__auto",
             "range": true,
