@@ -154,7 +154,7 @@
               "uid": "df5uy6qfnfym8f"
             },
             "editorMode": "code",
-            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=\"$cluster\"}[2m])) by (container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=\"$cluster\"}/100000) by (container)) * 100",
+            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}[2m])) by (container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}/100000) by (container)) * 100",
             "instant": false,
             "legendFormat": "__auto",
             "range": true,
@@ -176,6 +176,7 @@
             "value": "k8s-a"
           },
           "definition": "label_values(container_cpu_cfs_periods_total,cluster_name)",
+          "includeAll": true,
           "label": "cluster",
           "name": "cluster",
           "options": [],
@@ -184,7 +185,7 @@
             "query": "label_values(container_cpu_cfs_periods_total,cluster_name)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
-          "refresh": 1,
+          "refresh": 2,
           "regex": "",
           "type": "query"
         }
