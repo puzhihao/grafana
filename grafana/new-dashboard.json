@@ -141,112 +141,13 @@
             "instant": false,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "{{ container}}",
+            "legendFormat": "{{ container,cluster_name}}",
             "metric": "container_cpu",
             "refId": "A",
             "step": 10
           }
         ],
         "title": "微服务(容器名)平均CPU使用率(最大100%)",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "prometheus",
-          "uid": "df5uy6qfnfym8f"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": 0
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 8
-        },
-        "id": 1,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hideZeros": false,
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "12.1.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "df5uy6qfnfym8f"
-            },
-            "editorMode": "code",
-            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}[2m])) by (cluster_name,container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}/100000) by (cluster_name,container)) * 100",
-            "hide": false,
-            "instant": false,
-            "legendFormat": "__auto",
-            "range": true,
-            "refId": "A"
-          }
-        ],
-        "title": "New panel",
         "type": "timeseries"
       }
     ],
