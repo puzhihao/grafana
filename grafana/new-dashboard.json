@@ -394,13 +394,13 @@
         },
         {
           "current": {
-            "text": "",
-            "value": ""
+            "text": "prometheus",
+            "value": "df5uy6qfnfym8f"
           },
           "label": "prometheus",
           "name": "ds",
           "options": [],
-          "query": "",
+          "query": "prometheus",
           "refresh": 1,
           "regex": "",
           "type": "datasource"
