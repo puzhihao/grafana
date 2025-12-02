@@ -107,7 +107,7 @@
                 "options": {
                   "mode": "exclude",
                   "names": [
-                    "kubelet-cadvisor-addlabel"
+                    "{cluster_name=\"k8s-a\", container=\"kubelet-cadvisor-addlabel\"}"
                   ],
                   "prefix": "All except:",
                   "readOnly": true
@@ -155,6 +155,7 @@
             },
             "editorMode": "code",
             "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}[2m])) by (cluster_name,container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\",cluster_name=~\"$cluster\"}/100000) by (cluster_name,container)) * 100",
+            "hide": false,
             "instant": false,
             "legendFormat": "__auto",
             "range": true,
