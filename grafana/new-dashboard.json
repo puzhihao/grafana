@@ -24,7 +24,7 @@
             "type": "prometheus",
             "uid": "df5uy6qfnfym8f"
           },
-          "enable": true,
+          "enable": false,
           "hide": false,
           "iconColor": "red",
           "name": "New annotation",
@@ -129,7 +129,7 @@
               "uid": "df5uy6qfnfym8f"
             },
             "editorMode": "code",
-            "expr": "",
+            "expr": "sum(irate(container_cpu_usage_seconds_total{container !=\"\",container!=\"POD\"}[2m])) by (container) / (sum(container_spec_cpu_quota{container !=\"\",container!=\"POD\"}/100000) by (container)) * 100",
             "instant": false,
             "legendFormat": "__auto",
             "range": true,
