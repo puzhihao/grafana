@@ -107,7 +107,7 @@
                 "options": {
                   "mode": "exclude",
                   "names": [
-                    "{cluster_name=\"k8s-a\", container=\"kubelet-cadvisor-addlabel\"}"
+                    "{cluster_name=\"k8s-b\", container=\"kubelet-cadvisor-addlabel\"}"
                   ],
                   "prefix": "All except:",
                   "readOnly": true
